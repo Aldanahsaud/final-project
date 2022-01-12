@@ -9,5 +9,6 @@ target 'sheet2' do
 pod 'Firebase/Auth'
 pod 'Firebase/Storage'
 pod 'Firebase/Firestore'
+pod 'lottie-ios'
 
 end

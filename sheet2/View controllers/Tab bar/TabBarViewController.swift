@@ -8,10 +8,16 @@
 import UIKit
 
 class TabBarViewController: UITabBarController {
-
+    
+    @IBOutlet weak var tabbarie: UITabBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        
+        
+        
+        
     }
     
 

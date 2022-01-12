@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import Lottie
 
 class SignUpViewController: UITabBarController {
     
@@ -15,246 +16,235 @@ class SignUpViewController: UITabBarController {
     let imagePicker = UIImagePickerController()
     var imageName = "\(UUID().uuidString).png"
      
-    let stackView = UIStackView()
-    var myImage = UIImageView()
-    let addPhoto = UIButton()
-    var textFieldName = UITextField()
-    var textFieldUsername = UITextField()
-    var textFiledEmail = UITextField()
-    var textFieldPassword = UITextField()
-    let signUp = UIButton()
-    var labelCreat = UILabel()
-    var signIn = UIButton()
-    
     
     let backButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.setTitle("رجوع", for: .normal)
         $0.setTitleColor(.blue, for: .normal)
         $0.addTarget(self, action: #selector(goBack), for: .touchUpInside)
-        $0.backgroundColor = #colorLiteral(red: 0.9243349433, green: 0.8509200811, blue: 0.727404654, alpha: 1)
-        $0.layer.cornerRadius = 10
-        $0.setTitleColor(.white, for: .normal)
+        $0.backgroundColor = #colorLiteral(red: 0.7927808166, green: 0.9660930037, blue: 0.9733143449, alpha: 1)
+        $0.layer.cornerRadius = 8
+        $0.setTitleColor( #colorLiteral(red: 0.4041165113, green: 0.6092897654, blue: 0.60647434, alpha: 1), for: .normal)
         $0.sizeToFit()
+        $0.layer.shadowColor = UIColor(named: "buttonShadow")?.cgColor
+        $0.layer.shadowOpacity = 0.8
+        $0.layer.shadowOffset = CGSize(width: 1, height: 1)
+        $0.layer.borderWidth = 2
+        $0.layer.borderColor = UIColor(named: "buttonBorder")?.cgColor
+        
         return $0
     }(UIButton())
     
-//    let backButton: UIButton = {
-//        $0.translatesAutoresizingMaskIntoConstraints = false
-//        $0.setTitle("رجوع للخلف", for: .normal)
-//        $0.setTitleColor(.blue, for: .normal)
-//        $0.addTarget(self, action: #selector(goBack), for: .touchUpInside)
-//
-//        return $0
-//    }(UIButton())
-//
-//    let textFeildUsername: UITextField = {
-//        $0.translatesAutoresizingMaskIntoConstraints = false
-//        $0.placeholder = "اسم المستخدم"
-//        $0.clipsToBounds = true
-//        $0.layer.cornerRadius = 6
-//        $0.layer.borderWidth = 0.25
-//
-//        return $0
-//    }(UITextField())
-//
-//    let passwordTextFeild: UITextField = {
-//        $0.translatesAutoresizingMaskIntoConstraints = false
-//        $0.placeholder = "رمز المرور"
-//        $0.clipsToBounds = true
-//        $0.layer.cornerRadius = 6
-//        $0.layer.borderWidth = 0.25
-//
-//        return $0
-//    }(UITextField())
-//
-//    let nameTextFeild: UITextField = {
-//        $0.translatesAutoresizingMaskIntoConstraints = false
-//        $0.placeholder = "ادخل اسمك"
-//        $0.clipsToBounds = true
-//        $0.layer.cornerRadius = 6
-//        $0.layer.borderWidth = 0.25
-//
-//        return $0
-//    }(UITextField())
-//
-//    let signningUpButton: UIButton = {
-//        $0.translatesAutoresizingMaskIntoConstraints = false
-//        $0.backgroundColor = .brown
-//        $0.setTitle("دخول", for: .normal)
-//        $0.addTarget(self, action: #selector(signInAction), for: .touchDown)
-//
-//        return $0
-//    }(UIButton())
+    var myImage : UIImageView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.image = UIImage(named: "icons8-Doodle-MXJBhIDosJsE-50-ffffff")
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 10
+        $0.layer.borderWidth = 1
+        $0.layer.masksToBounds = false
+        $0.clipsToBounds = true
+        $0.tintColor = .gray
+        
+        return $0
+        
+    }(UIImageView())
     
+    let addPhoto : UIButton = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.setTitle("+", for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        $0.setTitleColor(#colorLiteral(red: 0.1948547363, green: 0.1630736887, blue: 0.9492306113, alpha: 1) , for: .normal)
+        $0.addTarget(self, action: #selector(addPhotoAction), for: .touchUpInside)
+
+        return $0
+    }(UIButton())
+    var textFieldName : UITextField = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.layer.borderWidth = 1.0
+//        $0.layer.borderColor = UIColor(named: "Color")?.cgColor
+        $0.backgroundColor =  .white
+        $0.placeholder = "الاسم"
+        $0.textAlignment = .right
+        
+        return $0
+    }(UITextField())
+    
+    var textFieldUsername : UITextField = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.borderStyle = .roundedRect
+        $0.placeholder = "اسم المستخدم"
+        $0.textAlignment = .right
+        
+        
+        return $0
+    }(UITextField())
+    var textFiledEmail : UITextField = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.borderStyle = .roundedRect
+        $0.placeholder = "البريد الالكتروني"
+        $0.textAlignment = .right
+        
+        
+        
+        return $0
+    }(UITextField())
+    var textFieldPassword : UITextField = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.placeholder = "كلمة المرور"
+        $0.textAlignment = .right
+        $0.borderStyle = .roundedRect
+        $0.isSecureTextEntry = true
+        
+
+        return $0
+    }(UITextField())
+    let signUp : UIButton = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.setTitle("تسجيل الدخوب", for: .normal)
+        $0.setTitleColor(.blue, for: .normal)
+        $0.addTarget(self, action: #selector(goBack), for: .touchUpInside)
+        $0.backgroundColor = #colorLiteral(red: 0.7927808166, green: 0.9660930037, blue: 0.9733143449, alpha: 1)
+        $0.layer.cornerRadius = 8
+        $0.setTitleColor( #colorLiteral(red: 0.4041165113, green: 0.6092897654, blue: 0.60647434, alpha: 1), for: .normal)
+        $0.sizeToFit()
+        $0.layer.shadowColor = UIColor(named: "buttonShadow")?.cgColor
+        $0.layer.shadowOpacity = 0.8
+        $0.layer.shadowOffset = CGSize(width: 1, height: 1)
+        $0.layer.borderWidth = 2
+        $0.layer.borderColor = UIColor(named: "buttonBorder")?.cgColor
+        $0.addTarget(self, action: #selector(signUpAction), for: .touchUpInside)
+
+        return $0
+    }(UIButton())
+//    var labelCreat : UILabel = {
+//
+//    }(UILabel())
+    
+    
+    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
-        view.backgroundColor = .white
-        
+        view.backgroundColor = #colorLiteral(red: 0.4041165113, green: 0.6092897654, blue: 0.60647434, alpha: 1)
         let width = view.frame.width-100
         let height = view.frame.height-300
         var y = 0.0
+        
          
         //Adding SubViews
-        view.addSubview(stackView)
-        stackView.addSubview(myImage)
-        stackView.addSubview(addPhoto)
-        stackView.addSubview(textFieldName)
-        stackView.addSubview(textFiledEmail)
-        stackView.addSubview(textFieldUsername)
-        stackView.addSubview(textFieldPassword)
-        stackView.addSubview(signUp)
-        view.addSubview(signIn)
         view.addSubview(backButton)
+        view.addSubview(myImage)
+        view.addSubview(addPhoto)
+        view.addSubview(textFieldName)
+        view.addSubview(textFiledEmail)
+        view.addSubview(textFieldUsername)
+        view.addSubview(textFieldPassword)
+        view.addSubview(signUp)
+        
         
         NSLayoutConstraint.activate([
             backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 45),
             backButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15),
             backButton.widthAnchor.constraint(equalToConstant: 55),
-            backButton.heightAnchor.constraint(equalToConstant: 23),
+            backButton.heightAnchor.constraint(equalToConstant: 30),
             
-//            signIn.widthAnchor.constraint(equalToConstant: width),
-//            signIn.heightAnchor.constraint(equalToConstant: width/14),
-//            signIn.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            myImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 77),
+            myImage.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 20),
+            myImage.widthAnchor.constraint(equalToConstant: 80),
+            myImage.heightAnchor.constraint(equalToConstant: 80),
             
+            addPhoto.topAnchor.constraint(equalTo: myImage.bottomAnchor, constant: 5),
+            addPhoto.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 40),
+            
+            textFieldName.topAnchor.constraint(equalTo: addPhoto.bottomAnchor, constant: 20),
+            textFieldName.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15),
+            textFieldName.widthAnchor.constraint(equalToConstant: 340),
+            textFieldName.heightAnchor.constraint(equalToConstant: 50),
+            
+            textFiledEmail.topAnchor.constraint(equalTo: textFieldName.bottomAnchor, constant: 18),
+            textFiledEmail.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15),
+            textFiledEmail.widthAnchor.constraint(equalToConstant: 340),
+            textFiledEmail.heightAnchor.constraint(equalToConstant: 50),
+            
+            textFieldUsername.topAnchor.constraint(equalTo: textFiledEmail.bottomAnchor, constant: 18),
+            textFieldUsername.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15),
+            textFieldUsername.widthAnchor.constraint(equalToConstant: 340),
+            textFieldUsername.heightAnchor.constraint(equalToConstant: 50),
+            
+            textFieldPassword.topAnchor.constraint(equalTo: textFieldUsername.bottomAnchor, constant: 18),
+            textFieldPassword.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15),
+            textFieldPassword.widthAnchor.constraint(equalToConstant: 340),
+            textFieldPassword.heightAnchor.constraint(equalToConstant: 50),
+            
+            signUp.topAnchor.constraint(equalTo: textFieldPassword.bottomAnchor, constant: 20),
+            signUp.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            signUp.widthAnchor.constraint(equalToConstant: 150),
+            signUp.heightAnchor.constraint(equalToConstant: 50),
         ])
          
          
-        // stack view
-       stackView.distribution = .fill
-        stackView.axis = .vertical
-        stackView.frame = CGRect(x: 0, y: 0, width: width, height: height)
-        stackView.center = view.center
          
          
-        //Profile Image
-        myImage.frame = CGRect(x: 0, y: y, width: width/2, height: width/2)
-        myImage.image = UIImage(systemName: "person.circle")
+//        Profile Image
         myImage.layer.cornerRadius = myImage.frame.height/2
-        myImage.clipsToBounds = true
-        myImage.tintColor = .gray
-        y+=myImage.frame.height
          
          
         //Add photo Btn
-        addPhoto.frame = CGRect(x: 100, y: 50, width: width, height: height/14)
-        addPhoto.setTitle("إضافة صورة شخصية", for: .normal)
-        addPhoto.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-        addPhoto.setTitleColor(#colorLiteral(red: 0.1948547363, green: 0.1630736887, blue: 0.9492306113, alpha: 1) , for: .normal)
-        addPhoto.addTarget(self, action: #selector(addPhotoAction), for: .touchUpInside)
-        y+=addPhoto.frame.height
-        y+=20
-         
-         
+
+
         //Name
-        textFieldName.frame = CGRect(x: 0, y: y, width: width, height: height/14)
-        textFieldName.borderStyle = .roundedRect
-        textFieldName.placeholder = "الاسم"
-        textFieldName.textAlignment = .right
-        y+=textFieldName.frame.height
-        y+=10
-         
+
         //Username
-        textFieldUsername.frame = CGRect(x: 0, y: y, width: width, height: height/14)
-        textFieldUsername.borderStyle = .roundedRect
-        textFieldUsername.placeholder = "اسم المستخدم"
-        textFieldUsername.textAlignment = .right
-        y+=textFieldUsername.frame.height
-        y+=10
-        
-        
+
         //Email
-        textFiledEmail.frame = CGRect(x: 0, y: y, width: width, height: height/14)
-        textFiledEmail.borderStyle = .roundedRect
-        textFiledEmail.placeholder = "البريد الالكتروني"
-        textFiledEmail.textAlignment = .right
-        y+=textFiledEmail.frame.height
-        y+=10
-         
+
 
         //Password
-        textFieldPassword.frame = CGRect(x: 0, y: y, width: width, height: height/14)
-        textFieldPassword.placeholder = "كلمة المرور"
-        textFieldPassword.textAlignment = .right
-        textFieldPassword.borderStyle = .roundedRect
-        textFieldPassword.isSecureTextEntry = true
-        y+=textFieldPassword.frame.height
-        y+=20
 
 
         //Signup
-        signUp.frame = CGRect(x: 0, y: y, width: width, height: height/14)
-        signUp.backgroundColor = #colorLiteral(red: 0.9243349433, green: 0.8509200811, blue: 0.727404654, alpha: 1)
         signUp.layer.cornerRadius = signUp.frame.height/2
-        signUp.setTitleColor(.white, for: .normal)
-        signUp.setTitle("التسجيل", for: .normal)
-        signUp.addTarget(self, action: #selector(signUpAction), for: .touchUpInside)
-        y+=signUp.frame.height
-        y+=100
          
-          
-        //Signin
-//        signIn.frame = CGRect(x: 0, y: y, width: width, height: height/14)
-//        signIn.translatesAutoresizingMaskIntoConstraints = false
-//        signIn.setTitle("لديك حساب ؟ سجل دخولك هنا", for: .normal)
-//        signIn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-//        signIn.setTitleColor(#colorLiteral(red: 0.1948547363, green: 0.1630736887, blue: 0.9492306113, alpha: 1), for: .normal)
-//        signIn.contentHorizontalAlignment = .center
-//        signIn.addTarget(self, action: #selector(signInAction), for: .touchUpInside)
-    
     
     hideKeyboardWhenTappedAround()
         
         
-//        view.addSubview(emailTextFeild)
-//        view.addSubview(passwordTextFeild)
-//        view.addSubview(signningUpButton)
-//        view.addSubview(backButton)
-//
-//        NSLayoutConstraint.activate([
-//            backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 35),
-//            backButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15),
-//
-//            emailTextFeild.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
-//            emailTextFeild.widthAnchor.constraint(equalToConstant: 300),
-//            emailTextFeild.heightAnchor.constraint(equalToConstant: 50),
-//            emailTextFeild.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
-//
-//
-//            passwordTextFeild.topAnchor.constraint(equalTo: emailTextFeild.bottomAnchor, constant: 20),
-//            passwordTextFeild.widthAnchor.constraint(equalToConstant: 300),
-//            passwordTextFeild.heightAnchor.constraint(equalToConstant: 50),
-//            passwordTextFeild.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
-//
-//            signningUpButton.topAnchor.constraint(equalTo: passwordTextFeild.bottomAnchor, constant: 20),
-//            signningUpButton.widthAnchor.constraint(equalToConstant: 70),
-//            signningUpButton.heightAnchor.constraint(equalToConstant: 50),
-//            signningUpButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 150)
-//
-//        ])
+//        func configureAnimation() {
+//            let animation = Animation.named("profile")
+//            let animationView = AnimationView(animation:animation)
+//            animationView.contentMode = .scaleAspectFill
+//            animationView.frame = CGRect(x: width/4, y: 60, width: width/2, height: width/2)
+//            y+=animationView.frame.height
+//            stackView.addSubview(animationView)
+//            animationView.play()
+//            animationView.loopMode = .loop
+//            animationView.animationSpeed = 1
+//          }
+//        configureAnimation()
     }
+    
     
     @objc func goBack() {
         dismiss(animated: true, completion: nil)
     }
     
-    @objc func signInAction(){
-        let vc = LoginViewController()
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
-    }
+//    @objc func signInAction(){
+//        let vc = LoginViewController()
+//        vc.modalPresentationStyle = .fullScreen
+//        self.present(vc, animated: true, completion: nil)
+//    }
     
     @objc func signUpAction() {
         if textFiledEmail.text != "" && textFieldPassword.text != "" {
             Auth.auth().createUser(withEmail: textFiledEmail.text!, password: textFieldPassword.text!) { user, Error in
-                
+
                 if Error == nil {
                     self.addUser(userId: (user?.user.uid)!)
                     let nextVC = HomeViewController()
                     nextVC.modalPresentationStyle = .fullScreen
                     self.present(nextVC, animated: true, completion: nil)
-                    
+
                 } else{
                     let alert = UIAlertController(title: "تنبيه", message: Error?.localizedDescription, preferredStyle: .alert)
                                     alert.addAction(UIAlertAction(title: "حسناً", style: .default, handler: nil))
@@ -272,19 +262,19 @@ class SignUpViewController: UITabBarController {
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true, completion: nil)
     }
-    
+
     func addUser(userId: String) {
-        if myImage.image != UIImage(systemName: "person.circle") {
+        if myImage.image != UIImage(named: "icons8-Doodle-MXJBhIDosJsE-50-ffffff") {
             uploadImage()
         }
-        
+
         self.db.collection("Users")
             .document(userId).setData(
                 [
                     "email" : self.textFiledEmail.text!,
                     "name" : self.textFieldName.text!,
-                    "username" : "",
-                    "userIcon": myImage.image == UIImage(systemName: "person.circle") ? "nil" : imageName,
+                    "username" : self.textFieldUsername.text!,
+                    "userIcon": myImage.image == UIImage(named: "icons8-Doodle-MXJBhIDosJsE-50-ffffff") ? "nil" : imageName,
                     "posts" : 0,
                     "password" : self.textFieldPassword.text!,
                     "groups" : "",
@@ -293,17 +283,17 @@ class SignUpViewController: UITabBarController {
         {(error) in
             if error == nil {
                 print("Added Succ..")
-                
+
             }else {
                 print(error!.localizedDescription)
-                
+
             }
         }
-        
+
     }
-    
+
     func uploadImage() {
-        
+
         let imagefolder = Storage.storage().reference().child("images")
         if let imageData = myImage.image?.jpegData(compressionQuality: 0.1) {
             imagefolder.child(imageName).putData(imageData, metadata: nil){
@@ -315,15 +305,15 @@ class SignUpViewController: UITabBarController {
                 }
             }
         }
-        
+
     }
-    
+
     @objc func dismissKeyboard() {
           view.endEditing(true)
          }
-    
+
     func hideKeyboardWhenTappedAround() {
-       
+
       let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
       tap.cancelsTouchesInView = false
       view.addGestureRecognizer(tap)
