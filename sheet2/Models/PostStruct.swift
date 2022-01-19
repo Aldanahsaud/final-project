@@ -12,4 +12,5 @@ struct Posts {
     var username = String()
     var link = String()
     var date = Date()
+   // var bookmark = String()
 }

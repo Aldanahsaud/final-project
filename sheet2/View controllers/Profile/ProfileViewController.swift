@@ -11,8 +11,9 @@ import Firebase
 class ProfileViewController: UIViewController {
     
     
+    @IBOutlet weak var viewStoryboard: UIView!
     // Not Logged in View
-    let currentUser = Auth.auth().currentUser?.uid
+    var userID = Auth.auth().currentUser?.uid
     
     let labelProfile: UILabel = {
         $0.text = "الصفحة الشخصية"
@@ -76,7 +77,7 @@ class ProfileViewController: UIViewController {
     //UIButton-signOutBtn
     let signOutBtn : UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "rectangle.portrait.and.arrow.right"), for: .normal)
+        button.setImage(UIImage(named: "signout"), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.tintColor = #colorLiteral(red: 0.04236891121, green: 0.6102550626, blue: 0.2603748143, alpha: 1)
         button.layer.cornerRadius = 15
@@ -107,8 +108,9 @@ class ProfileViewController: UIViewController {
     //UIButton-editPhotoBtn
     let editPhotoBtn : UIButton = {
         let editPhotoBtn = UIButton()
-        editPhotoBtn.setTitle("تعديل الصورة", for: .normal)
-        editPhotoBtn.setTitleColor(#colorLiteral(red: 0.04236891121, green: 0.6102550626, blue: 0.2603748143, alpha: 1), for: .normal)
+//        editPhotoBtn.setTitle("تعديل الصورة", for: .normal)
+        editPhotoBtn.setImage(UIImage(named: "edit"), for: .normal)
+        editPhotoBtn.setTitleColor(#colorLiteral(red: 0.3770111799, green: 0.8273198009, blue: 1, alpha: 1), for: .normal)
         editPhotoBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         editPhotoBtn.addTarget(self, action: #selector(editPhotoPressed), for: .touchDown)
         editPhotoBtn.translatesAutoresizingMaskIntoConstraints = false
@@ -126,24 +128,12 @@ class ProfileViewController: UIViewController {
     }()
     
     //Tableview
-    let tableView : UITableView = {
+    let myTableView : UITableView = {
         let tableView = UITableView()
         tableView.rowHeight = 110
         tableView.backgroundColor = .white
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
-    }()
-    //UIButton-signOutBtn
-    let infoBtn : UIButton = {
-        let infoBtn = UIButton()
-        infoBtn.setImage(UIImage(systemName: "info.circle"), for: .normal)
-        infoBtn.tintColor = .white
-        infoBtn.backgroundColor = #colorLiteral(red: 0.04236891121, green: 0.6102550626, blue: 0.2603748143, alpha: 1)
-        infoBtn.frame.size = CGSize(width: 40, height: 40)
-        infoBtn.layer.cornerRadius = infoBtn.frame.width/2
-        infoBtn.addTarget(self, action: #selector(questionsView), for: .touchDown)
-        infoBtn.translatesAutoresizingMaskIntoConstraints = false
-        return infoBtn
     }()
     let dismissing : UIButton = {
         $0.setTitle("Go Back", for: .normal)
@@ -153,10 +143,41 @@ class ProfileViewController: UIViewController {
         
         return $0
     }(UIButton())
+    
+    let bookmark : UIButton = {
+//        $0.setTitleColor(#colorLiteral(red: 0.3770111799, green: 0.8273198009, blue: 1, alpha: 1), for: .normal)
+//        $0.setTitle("مرجعيتي", for: .normal)
+        $0.setImage(UIImage(named: "bookmark"), for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        return $0
+        
+    }(UIButton())
+    
+    let setting : UIButton = {
+        $0.setImage(UIImage(named: "setting"), for: .normal)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        return $0
+        
+    }(UIButton())
+    
+    let line : UIImageView = {
+        $0.image = UIImage(named: "line2")
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        
+        return $0
+    }(UIImageView())
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
+        if Auth.auth().currentUser?.email! != nil {
+            self.loudData()
+        }
     }
     @objc func dismissingfunc() {
         dismiss(animated: true, completion: nil)
@@ -176,8 +197,9 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         print("dude?")
-        //        print(Auth.auth().currentUser!.email!)
-        if Auth.auth().currentUser?.email! == nil {
+        
+        
+        if Auth.auth().currentUser?.email! == nil  {
             print("Hello")
             view.addSubview(loginButton)
             view.addSubview(SignUpButton)
@@ -204,23 +226,21 @@ class ProfileViewController: UIViewController {
             ])
             self.loadUser()
         } else {
-            view.willRemoveSubview(loginButton)
-            view.willRemoveSubview(SignUpButton)
-            view.willRemoveSubview(dismissing)
+//            view.willRemoveSubview(loginButton)
+//            view.willRemoveSubview(SignUpButton)
+//            view.willRemoveSubview(dismissing)
             setupView()
             imagePicker.delegate = self
-            view.backgroundColor = .red
             
-            tableView.delegate = self
-            tableView.dataSource = self
-            tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "reqCell")
+            myTableView.delegate = self
+            myTableView.dataSource = self
+            myTableView.register(PostTableViewCell.self, forCellReuseIdentifier: "reqCell")
             self.loadUser()
-            //             loudData()
         }
-
-//        DispatchQueue.main.async {
-//            self.loadUser()
-//        }
+        
+                DispatchQueue.main.async {
+                    self.loadUser()
+                }
     }
     
     @objc func questionsView() {
@@ -239,7 +259,7 @@ class ProfileViewController: UIViewController {
         let signOutBtn = UIAlertAction(title: "تسجيل خروج", style: .destructive) { alertAction in
             do {
                 try Auth.auth().signOut()
-//                                self.dismiss(animated: false, completion: nil)
+                //                                self.dismiss(animated: false, completion: nil)
                 let vc = ProfileViewController()
                 vc.modalPresentationStyle = .fullScreen
                 self.present(vc, animated: false, completion: nil)
@@ -260,7 +280,7 @@ class ProfileViewController: UIViewController {
                     print("Error: ",error.localizedDescription)
                 }else {
                     self.nameLbl.text = documentSnapshot?.get("name") as? String ?? "nil"
-//                    self.pointLbl.text = String(documentSnapshot?.get("point") as? Int ?? 0) + "_"
+                    //                    self.pointLbl.text = String(documentSnapshot?.get("point") as? Int ?? 0) + "_"
                     let imgStr = documentSnapshot?.get("userIcon") as? String
                     if imgStr == "nil" {
                         self.userIcon.image = UIImage(named: "icons8-Doodle-MXJBhIDosJsE-50-ffffff")
@@ -320,140 +340,231 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-    //        func loudData(){
-    //            self.db.collection("Posts").getDocuments { [self] (qurySnapshot, error) in
-    //                   if let error = error {
-    //                       print(error)
-    //                   }else{
-    //                       for doc in qurySnapshot!.documents {
-    //                           let data = doc.data()
-    //                           let timestamp: Timestamp = data["RequstDate"] as! Timestamp
-    //                           let datetest: Date = timestamp.dateValue()
-    //                           if (doc.get("UsarID")as? String ?? "nil") == Auth.auth().currentUser?.uid {
-    //                               self.postArray.append(Posts(content: <#T##String#>, username: <#T##String#>, link: <#T##String#>, date: <#T##Date#>))}
-    //                           self.tableView.reloadData()
-    //                       }
-    //                   }
-    //               }
-    //           }
-}
-
-//MARK: -UIImagePickerController
-extension ProfileViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-        userIcon.image = pickedImage
-        updateUserIcon()
-        picker.dismiss(animated: true, completion: nil)
+    func loudData(){
+        if let userID = userID {
+            db.collection("Users").document(userID)
+                .getDocument {
+                    qurSnapShot, error in
+                    
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else {
+                        self.db.collection("Posts").order(by: "date", descending: true).addSnapshotListener({ qurySnapshot, error in
+                            self.postArray = []
+                            if let error = error {
+                                print(error)
+                            }else{
+                                for doc in qurySnapshot!.documents {
+                                    let data = doc.data()
+                                    let timestamp: Timestamp = data["date"] as! Timestamp
+                                    let datetest: Date = timestamp.dateValue()
+                                    if (doc.get("usernamep")as? String ?? "nil") == (qurSnapShot?.get("username") as? String ?? "nil"){
+                                        self.postArray.append(Posts(content: data["content"] as? String ?? "", username: data["usernamep"] as? String ?? "", link: data["link"] as? String ?? "" , date: datetest))}
+                                    DispatchQueue.main.async {
+                                        self.myTableView.reloadData()
+                                    }
+//                                    self.tableView.reloadData()
+                                }
+                            }
+                        })
+//                            .getDocuments { [self] (qurySnapshot, error) in
+//                            if let error = error {
+//                                print(error)
+//                            }else{
+//                                for doc in qurySnapshot!.documents {
+//                                    let data = doc.data()
+//                                    let timestamp: Timestamp = data["date"] as! Timestamp
+//                                    let datetest: Date = timestamp.dateValue()
+//                                    if (doc.get("usernamep")as? String ?? "nil") == (qurSnapShot?.get("username") as? String ?? "nil"){
+//                                        self.postArray.append(Posts(content: data["content"] as? String ?? "", username: data["usernamep"] as? String ?? "", link: data["link"] as? String ?? "" , date: datetest))}
+//                                    self.tableView.reloadData()
+//                                }
+//                            }
+//                        }
+//                        DispatchQueue.main.async {
+//                            self.tableView.reloadData()
+//                        }
+                    }
+                }
+        }
     }
 }
-
-
-
-//MARK: -NSLayoutConstraint
-extension ProfileViewController {
-    private func setupView() {
-        view.addSubview(userIcon)
-        view.addSubview(signOutBtn)
-        view.addSubview(nameLbl)
-//        view.addSubview(GherasImage)
-//        view.addSubview(pointLbl)
-//        view.addSubview(editPhotoBtn)
-        view.addSubview(tableView)
-        tableView.setEmptyMessage("no posts :(")
-//        view.addSubview(infoBtn)
-        
-        NSLayoutConstraint.activate([
-            signOutBtn.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
-            signOutBtn.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            signOutBtn.heightAnchor.constraint(equalToConstant: 40),
-            signOutBtn.widthAnchor.constraint(equalToConstant: 40),
-            
-            userIcon.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-            userIcon.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            userIcon.heightAnchor.constraint(equalToConstant: 150),
-            userIcon.widthAnchor.constraint(equalToConstant: 150),
-            
-            nameLbl.topAnchor.constraint(equalTo: userIcon.bottomAnchor, constant: 30),
-            nameLbl.heightAnchor.constraint(equalToConstant: 35),
-            nameLbl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            GherasImage.topAnchor.constraint(equalTo: nameLbl.bottomAnchor,constant: 8),
-//            GherasImage.trailingAnchor.constraint(equalTo: nameLbl.trailingAnchor),
-//            GherasImage.heightAnchor.constraint(equalToConstant: 25),
-//            GherasImage.widthAnchor.constraint(equalToConstant: 25),
-            
-            
-//            pointLbl.trailingAnchor.constraint(equalTo: GherasImage.leadingAnchor,constant: -5),
-//            pointLbl.heightAnchor.constraint(equalToConstant: 25),
-//            pointLbl.centerYAnchor.constraint(equalTo: GherasImage.centerYAnchor),
-            
-//            editPhotoBtn.topAnchor.constraint(equalTo: userIcon.topAnchor,constant: 5),
-//            editPhotoBtn.heightAnchor.constraint(equalToConstant: 25),
-//            editPhotoBtn.centerXAnchor.constraint(equalTo: userIcon.centerXAnchor),
-            
-            
-            //++++
-//            tableView.topAnchor.constraint(equalTo: pointLbl.bottomAnchor, constant: 100 ),
-//            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor , constant: 20 ),
-//            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor , constant: -20 ),
-//            tableView.heightAnchor.constraint(equalToConstant: 350),
-//
-//            infoBtn.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 20),
-//            infoBtn.leadingAnchor.constraint(equalTo: tableView.leadingAnchor , constant: 0),
-//            infoBtn.heightAnchor.constraint(equalToConstant: 40),
-//            infoBtn.widthAnchor.constraint(equalToConstant: 40),
-            
-        ])
-    }
-}
-
-
-extension ProfileViewController : UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postArray.count
+    
+    //MARK: -UIImagePickerController
+    extension ProfileViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+            userIcon.image = pickedImage
+            updateUserIcon()
+            picker.dismiss(animated: true, completion: nil)
+        }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reqCell", for: indexPath) as! PostTableViewCell
-        // dateformatter
-        let date = postArray[indexPath.row].date
-        var stringDate = ""
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMM d, yyyy"
-        stringDate = formatter.string(from: date ?? Date())
-        
-        cell.dateCreated.text = stringDate
-        cell.usernamePoster.text = postArray[indexPath.row].username
-        cell.contentPost.text = postArray[indexPath.row].content
-        cell.linkPost.text = postArray[indexPath.row].link
-        return cell
+    
+    
+    //MARK: -NSLayoutConstraint
+    extension ProfileViewController {
+        private func setupView() {
+            view.addSubview(userIcon)
+            view.addSubview(signOutBtn)
+            view.addSubview(nameLbl)
+            //        view.addSubview(GherasImage)
+            //        view.addSubview(pointLbl)
+            view.addSubview(editPhotoBtn)
+            view.addSubview(bookmark)
+            view.addSubview(myTableView)
+            view.addSubview(setting)
+            view.addSubview(line)
+//            tableView.setEmptyMessage("لا توجد مشاركات، شارك الان 🎀")
+//            if postArray != nil {
+//                print("hidden massage")
+//            } else if postArray == nil {
+//                self.tableView.setEmptyMessage("لا توجد مشاركات، شارك الان 🎀")
+//            } else {
+//                print("اوووففف")
+//            }
+            
+            
+            NSLayoutConstraint.activate([
+                signOutBtn.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+                signOutBtn.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -35),
+                signOutBtn.heightAnchor.constraint(equalToConstant: 70),
+                signOutBtn.widthAnchor.constraint(equalToConstant: 50),
+                
+                userIcon.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+                userIcon.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                userIcon.heightAnchor.constraint(equalToConstant: 150),
+                userIcon.widthAnchor.constraint(equalToConstant: 150),
+                
+                nameLbl.topAnchor.constraint(equalTo: view.topAnchor, constant: 350),
+                nameLbl.heightAnchor.constraint(equalToConstant: 35),
+                nameLbl.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -35),
+                
+                bookmark.topAnchor.constraint(equalTo: view.topAnchor, constant: 250),
+                bookmark.widthAnchor.constraint(equalToConstant: 50),
+                bookmark.heightAnchor.constraint(equalToConstant: 70),
+                bookmark.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 35),
+                
+                setting.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+                setting.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 35),
+                setting.widthAnchor.constraint(equalToConstant: 50),
+                setting.heightAnchor.constraint(equalToConstant: 70),
+                
+                line.topAnchor.constraint(equalTo: nameLbl.topAnchor, constant: 20),
+                line.widthAnchor.constraint(equalToConstant: 390),
+                line.heightAnchor.constraint(equalToConstant: 50),
+                line.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
+                
+//                bookmark.topAnchor.constraint(equalTo: nameLbl,)
+                //            GherasImage.topAnchor.constraint(equalTo: nameLbl.bottomAnchor,constant: 8),
+                //            GherasImage.trailingAnchor.constraint(equalTo: nameLbl.trailingAnchor),
+                //            GherasImage.heightAnchor.constraint(equalToConstant: 25),
+                //            GherasImage.widthAnchor.constraint(equalToConstant: 25),
+                
+                
+                //            pointLbl.trailingAnchor.constraint(equalTo: GherasImage.leadingAnchor,constant: -5),
+                //            pointLbl.heightAnchor.constraint(equalToConstant: 25),
+                //            pointLbl.centerYAnchor.constraint(equalTo: GherasImage.centerYAnchor),
+                
+                editPhotoBtn.topAnchor.constraint(equalTo: view.topAnchor, constant: 250),
+                editPhotoBtn.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -35),
+                editPhotoBtn.heightAnchor.constraint(equalToConstant: 70),
+                editPhotoBtn.widthAnchor.constraint(equalToConstant: 40),
+                
+                
+                //++++
+                myTableView.topAnchor.constraint(equalTo: line.bottomAnchor, constant: 10 ),
+                myTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor , constant: 20 ),
+                myTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor , constant: -20 ),
+                myTableView.heightAnchor.constraint(equalToConstant: 350),
+                
+            ])
+        }
     }
     
-}
+    
+    extension ProfileViewController : UITableViewDelegate, UITableViewDataSource {
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            if postArray.count == 0 {
+                myTableView.backgroundView = viewStoryboard
+            } else {
+                myTableView.backgroundView = nil
+            }
+            
+            return postArray.count
+        }
+        
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "reqCell", for: indexPath) as! PostTableViewCell
+            // dateformatter
+            let date = postArray[indexPath.row].date
+            var stringDate = ""
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMM d, yyyy"
+            stringDate = formatter.string(from: date ?? Date())
+            
+            cell.dateCreated.text = stringDate
+//            cell.usernamePoster.text = postArray[indexPath.row].username
+            cell.contentPost.text = postArray[indexPath.row].content
+            cell.linkPost.text = postArray[indexPath.row].link
+            return cell
+        }
+        
+        
+        func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+                let userEmail = Auth.auth().currentUser!.email!
 
-
-
-
-
-
-
+                if (editingStyle == .delete) {
+                    print("\(userEmail)-\(postArray[indexPath.row].content)")
+                        db.collection("Posts").document("\(userEmail)-\(postArray[indexPath.row].content)").delete() { err in
+                        if let err = err {
+                            print("Error removing document: \(err)")
+                        } else {
+                            let alert = UIAlertController(title: "", message: "تم حذف الماده  )", preferredStyle: .alert)
+                            let action = UIAlertAction(title: "موافق", style: .default ,handler: { action in
+                                
+//                                self.postArray.remove(at: indexPath.row)
+                                self.myTableView.reloadData()
+                            })
+                            alert.addAction(action)
+                            self.present(alert, animated: true)
+                            print("Document successfully removed!")
+                        }
+                    }
+                }
+        
+    }
+        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            return 100
+        }
+    
+    }
+    
+    
+    
+    
+    
 extension UITableView {
-    
-    func setEmptyMessage(_ message: String) {
-        let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height))
-        messageLabel.text = message
-        messageLabel.textColor = .black
-        messageLabel.numberOfLines = 0
-        messageLabel.textAlignment = .center
-        messageLabel.font = UIFont(name: "TrebuchetMS", size: 15)
-        messageLabel.sizeToFit()
         
-        self.backgroundView = messageLabel
-        self.separatorStyle = .none
+        func setEmptyMessage(_ message: String) {
+            let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height))
+            messageLabel.text = message
+            messageLabel.textColor = .black
+            messageLabel.numberOfLines = 0
+            messageLabel.textAlignment = .center
+            messageLabel.font = UIFont(name: "TrebuchetMS", size: 15)
+            messageLabel.sizeToFit()
+            
+            self.backgroundView = messageLabel
+            self.separatorStyle = .none
+        }
+        
+        func restore() {
+            self.backgroundView = nil
+            self.separatorStyle = .singleLine
+        }
     }
     
-    func restore() {
-        self.backgroundView = nil
-        self.separatorStyle = .singleLine
-    }
-}
+    
+    
+    

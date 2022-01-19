@@ -85,9 +85,6 @@ class ForgetPasswordViewController: UITabBarController {
                                 self.present(alert, animated: true, completion: nil)
             } else {
                 self.dismiss(animated: true, completion: nil)
-//                let vc = ProfileViewController()
-//                vc.modalPresentationStyle = .fullScreen
-//                self.present(vc, animated: true, completion: nil)
             }
         }
     }

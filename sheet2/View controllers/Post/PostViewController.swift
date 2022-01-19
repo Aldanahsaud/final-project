@@ -13,6 +13,7 @@ class PostViewController: UIViewController {
     let db = Firestore.firestore()
     var userID = Auth.auth().currentUser?.uid
     var currentUser = Auth.auth().currentUser
+    var arrpost:[Posts] = []
     
     let thePost : UITextView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -80,6 +81,14 @@ class PostViewController: UIViewController {
     
     func postsCollection() {
         let cDate = Date()
+        let email = Auth.auth().currentUser!.email!
+        
+        var conntent = self.thePost.text!
+        var date = cDate
+        var link = self.linkTextField.text!
+        var usearName = ""
+        
+        
         if let userID = userID {
             db.collection("Users").document(userID)
                 .getDocument {
@@ -87,16 +96,20 @@ class PostViewController: UIViewController {
                         if let error = error {
                             print(error.localizedDescription)
                         } else {
-//                                let data = qurySnapShot?.get("username")
 
-                                self.db.collection("Posts")
-                                    .addDocument(data: [
-                                        "content" : self.thePost.text,
-                                        "link" : self.linkTextField.text,
+                            self.db.collection("Posts")
+                                .document("\(email)-\(self.thePost.text!)")
+                                    .setData( [
+                                        "content" : conntent,
+                                        "link" : link,
                                         "usernamep" : qurySnapShot?.get("username"),
-                                        "date": cDate
+                                        "date": date,
+                                        "email" : email
                                         
                                     ])
+                           
+
+                            
                                 {(error) in
                                     if error == nil {
                                         print("Added Succ..")
@@ -109,7 +122,7 @@ class PostViewController: UIViewController {
                                         
                                     }
                                 }
-                            
+                            self.arrpost.append(Posts(content: conntent, username: usearName, link: link, date: date))
                         }
                     }
                 
