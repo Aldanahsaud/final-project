@@ -26,7 +26,7 @@ class LoginViewController: UITabBarController {
     
     let backButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.setTitle("رجوع للخلف", for: .normal)
+        $0.setTitle("رجوع", for: .normal)
         $0.setTitleColor(.blue, for: .normal)
         $0.addTarget(self, action: #selector(goBack), for: .touchUpInside)
         
@@ -35,7 +35,7 @@ class LoginViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "Color")
         view.addSubview(backButton)
         
         NSLayoutConstraint.activate([
@@ -69,7 +69,11 @@ class LoginViewController: UITabBarController {
         
         //ImageView
         imageView.frame = CGRect(x: width*0.19, y: y, width: width/1.5, height: width/1.5)
-        imageView.image = UIImage(named: "Image")
+        imageView.image = UIImage(named: "iTunesArtwork")
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 15.0
+        imageView.layer.borderWidth = 2.0
+        
         y+=imageView.frame.height
         y+=20
         
@@ -77,7 +81,9 @@ class LoginViewController: UITabBarController {
         textFieldEmail.frame = CGRect(x: 0, y: y, width: width, height: height/14)
         textFieldEmail.placeholder = "البريد الالكتروني"
         textFieldEmail.textAlignment = .right
-        textFieldEmail.borderStyle = .roundedRect
+        textFieldEmail.clipsToBounds = true
+        textFieldEmail.layer.cornerRadius = 15.0
+        textFieldEmail.layer.borderWidth = 2.0
         textFieldEmail.textColor = .darkGray
         y+=textFieldEmail.frame.height
         y+=10
@@ -86,7 +92,9 @@ class LoginViewController: UITabBarController {
         textFieldPassword.frame = CGRect(x: 0, y: y, width: width, height: height/14)
         textFieldPassword.placeholder = "كلمة المرور"
         textFieldPassword.textAlignment = .right
-        textFieldPassword.borderStyle = .roundedRect
+        textFieldPassword.clipsToBounds = true
+        textFieldPassword.layer.cornerRadius = 15.0
+        textFieldPassword.layer.borderWidth = 2.0
         textFieldPassword.textColor = .darkGray
         textFieldPassword.isSecureTextEntry = true
         y+=textFieldPassword.frame.height
@@ -96,7 +104,7 @@ class LoginViewController: UITabBarController {
         forgetPassword.setTitle("نسيت كلمة المرور؟", for: .normal)
         forgetPassword.titleLabel?.font = .systemFont(ofSize: 14)
         forgetPassword.contentHorizontalAlignment = .left
-        forgetPassword.setTitleColor(#colorLiteral(red: 0.04236891121, green: 0.6102550626, blue: 0.2603748143, alpha: 1), for: .normal)
+        forgetPassword.setTitleColor(.blue, for: .normal)
         forgetPassword.addTarget(self, action: #selector(forgetPasswordAction), for: .touchUpInside)
         y+=forgetPassword.frame.height
         y+=60
@@ -104,9 +112,10 @@ class LoginViewController: UITabBarController {
         // Signin
         signIn.frame = CGRect(x: 0, y: y, width: width, height: height/14)
         signIn.setTitle("تسجيل الدخول", for: .normal)
-        signIn.setTitleColor(.white, for: .normal)
+        signIn.setTitleColor(.black, for: .normal)
         signIn.layer.cornerRadius = signIn.frame.height/2
-        signIn.backgroundColor = #colorLiteral(red: 0.04236891121, green: 0.6102550626, blue: 0.2603748143, alpha: 1)
+        signIn.backgroundColor = UIColor(#colorLiteral(red: 0.5137255192, green: 0.5137255192, blue: 0.5137255192, alpha: 1))
+        signIn.layer.borderWidth = 2.0
         signIn.layer.masksToBounds = true
         signIn.addTarget(self, action: #selector(signInAction), for: .touchUpInside)
         y+=signIn.frame.height

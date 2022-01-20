@@ -22,15 +22,6 @@ class SignUpViewController: UITabBarController {
         $0.setTitle("رجوع", for: .normal)
         $0.setTitleColor(.blue, for: .normal)
         $0.addTarget(self, action: #selector(goBack), for: .touchUpInside)
-        $0.backgroundColor = #colorLiteral(red: 0.7927808166, green: 0.9660930037, blue: 0.9733143449, alpha: 1)
-        $0.layer.cornerRadius = 8
-        $0.setTitleColor( #colorLiteral(red: 0.4041165113, green: 0.6092897654, blue: 0.60647434, alpha: 1), for: .normal)
-        $0.sizeToFit()
-        $0.layer.shadowColor = UIColor(named: "buttonShadow")?.cgColor
-        $0.layer.shadowOpacity = 0.8
-        $0.layer.shadowOffset = CGSize(width: 1, height: 1)
-        $0.layer.borderWidth = 2
-        $0.layer.borderColor = UIColor(named: "buttonBorder")?.cgColor
         
         return $0
     }(UIButton())
@@ -60,10 +51,12 @@ class SignUpViewController: UITabBarController {
     }(UIButton())
     var textFieldName : UITextField = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.layer.borderWidth = 1.0
-//        $0.layer.borderColor = UIColor(named: "Color")?.cgColor
         $0.backgroundColor =  .white
-        $0.placeholder = "الاسم"
+        $0.placeholder = "  الاسم"
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 15.0
+        $0.layer.borderWidth = 2.0
+        $0.layer.borderColor = UIColor(named: "Color-1")?.cgColor
         $0.textAlignment = .right
         
         return $0
@@ -71,8 +64,11 @@ class SignUpViewController: UITabBarController {
     
     var textFieldUsername : UITextField = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.borderStyle = .roundedRect
-        $0.placeholder = "اسم المستخدم"
+        $0.placeholder = "  اسم المستخدم"
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 15.0
+        $0.layer.borderWidth = 2.0
+        $0.layer.borderColor = UIColor(named: "Color-1")?.cgColor
         $0.textAlignment = .right
         
         
@@ -80,8 +76,11 @@ class SignUpViewController: UITabBarController {
     }(UITextField())
     var textFiledEmail : UITextField = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.borderStyle = .roundedRect
-        $0.placeholder = "البريد الالكتروني"
+        $0.placeholder = "  البريد الالكتروني"
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 15.0
+        $0.layer.borderWidth = 2.0
+        $0.layer.borderColor = UIColor(named: "Color-1")?.cgColor
         $0.textAlignment = .right
         
         
@@ -90,9 +89,12 @@ class SignUpViewController: UITabBarController {
     }(UITextField())
     var textFieldPassword : UITextField = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.placeholder = "كلمة المرور"
+        $0.placeholder = "  كلمة المرور "
         $0.textAlignment = .right
-        $0.borderStyle = .roundedRect
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 15.0
+        $0.layer.borderWidth = 2.0
+        $0.layer.borderColor = UIColor(named: "Color-1")?.cgColor
         $0.isSecureTextEntry = true
         
 
@@ -100,25 +102,15 @@ class SignUpViewController: UITabBarController {
     }(UITextField())
     let signUp : UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.setTitle("تسجيل الدخوب", for: .normal)
-        $0.setTitleColor(.blue, for: .normal)
-        $0.addTarget(self, action: #selector(goBack), for: .touchUpInside)
-        $0.backgroundColor = #colorLiteral(red: 0.7927808166, green: 0.9660930037, blue: 0.9733143449, alpha: 1)
-        $0.layer.cornerRadius = 8
-        $0.setTitleColor( #colorLiteral(red: 0.4041165113, green: 0.6092897654, blue: 0.60647434, alpha: 1), for: .normal)
-        $0.sizeToFit()
-        $0.layer.shadowColor = UIColor(named: "buttonShadow")?.cgColor
-        $0.layer.shadowOpacity = 0.8
-        $0.layer.shadowOffset = CGSize(width: 1, height: 1)
-        $0.layer.borderWidth = 2
-        $0.layer.borderColor = UIColor(named: "buttonBorder")?.cgColor
+        $0.setTitle("تسجيل دخول", for: .normal)
+        $0.backgroundColor = UIColor(#colorLiteral(red: 0.5137255192, green: 0.5137255192, blue: 0.5137255192, alpha: 1))
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 15.0
+        $0.layer.borderWidth = 2.0
         $0.addTarget(self, action: #selector(signUpAction), for: .touchUpInside)
 
         return $0
     }(UIButton())
-//    var labelCreat : UILabel = {
-//
-//    }(UILabel())
     
     
     
@@ -126,7 +118,7 @@ class SignUpViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
-        view.backgroundColor = #colorLiteral(red: 0.4041165113, green: 0.6092897654, blue: 0.60647434, alpha: 1)
+        view.backgroundColor = UIColor(named: "Color")
         let width = view.frame.width-100
         let height = view.frame.height-300
         var y = 0.0
@@ -185,43 +177,14 @@ class SignUpViewController: UITabBarController {
          
          
          
-         
-//        Profile Image
         myImage.layer.cornerRadius = myImage.frame.height/2
-         
-         
-        //Add photo Btn
-
-
-        //Name
-
-        //Username
-
-        //Email
-
-
-        //Password
-
-
-        //Signup
+        
         signUp.layer.cornerRadius = signUp.frame.height/2
          
     
     hideKeyboardWhenTappedAround()
         
         
-//        func configureAnimation() {
-//            let animation = Animation.named("profile")
-//            let animationView = AnimationView(animation:animation)
-//            animationView.contentMode = .scaleAspectFill
-//            animationView.frame = CGRect(x: width/4, y: 60, width: width/2, height: width/2)
-//            y+=animationView.frame.height
-//            stackView.addSubview(animationView)
-//            animationView.play()
-//            animationView.loopMode = .loop
-//            animationView.animationSpeed = 1
-//          }
-//        configureAnimation()
     }
     
     
@@ -229,11 +192,6 @@ class SignUpViewController: UITabBarController {
         dismiss(animated: true, completion: nil)
     }
     
-//    @objc func signInAction(){
-//        let vc = LoginViewController()
-//        vc.modalPresentationStyle = .fullScreen
-//        self.present(vc, animated: true, completion: nil)
-//    }
     
     @objc func signUpAction() {
         if textFiledEmail.text != "" && textFieldPassword.text != "" {
@@ -277,8 +235,8 @@ class SignUpViewController: UITabBarController {
                     "userIcon": myImage.image == UIImage(named: "icons8-Doodle-MXJBhIDosJsE-50-ffffff") ? "nil" : imageName,
                     "posts" : 0,
                     "password" : self.textFieldPassword.text!,
-                    "groups" : "",
-                    "following" : ""
+                    "groups" : [""],
+                    "bookmark" : [""]
                 ])
         {(error) in
             if error == nil {

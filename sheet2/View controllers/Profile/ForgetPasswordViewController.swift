@@ -18,7 +18,7 @@ class ForgetPasswordViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .brown
+        view.backgroundColor = UIColor(named: "Color")
         setDesign()
     }
     

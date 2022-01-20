@@ -17,25 +17,35 @@ class PostViewController: UIViewController {
     
     let thePost : UITextView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.backgroundColor = .red
-        $0.layer.borderColor = UIColor.black.cgColor
-        $0.layer.borderWidth = 2
+        $0.clipsToBounds = true
+        $0.text = "  شاركي مع الاحباب في ٢٠٠ حرف "
         $0.layer.cornerRadius = 15.0
+        $0.layer.borderWidth = 2.0
+        $0.textAlignment = .right
+        $0.layer.borderColor = UIColor(#colorLiteral(red: 0.666983366, green: 0.8120718598, blue: 0.8098518252, alpha: 1)).cgColor
+        
         return $0
     }(UITextView())
     
     let linkTextField : UITextField = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.placeholder = "paste the link"
+        $0.placeholder = "  رابط المشاركة"
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 15.0
+        $0.layer.borderWidth = 2.0
+        $0.textAlignment = .right
+        $0.layer.borderColor = UIColor(#colorLiteral(red: 0.666983366, green: 0.8120718598, blue: 0.8098518252, alpha: 1)).cgColor
         
         return $0
     }(UITextField())
     
     let buttonPost : UIButton = {
+        $0.setTitle("☑️", for: .normal)
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.backgroundColor = .black
-        $0.setTitle("نشر", for: .normal)
+        $0.tintColor = UIColor(#colorLiteral(red: 0.666983366, green: 0.8120718598, blue: 0.8098518252, alpha: 1))
         $0.addTarget(self, action: #selector(addPost), for: .touchUpInside)
+        
+        
         return $0
     }(UIButton())
     
@@ -44,6 +54,7 @@ class PostViewController: UIViewController {
         view.addSubview(thePost)
         view.addSubview(buttonPost)
         view.addSubview(linkTextField)
+        view.backgroundColor = UIColor(named: "Color")
         
         NSLayoutConstraint.activate([
             
@@ -55,11 +66,11 @@ class PostViewController: UIViewController {
             linkTextField.topAnchor.constraint(equalTo: thePost.bottomAnchor, constant: 20),
             linkTextField.widthAnchor.constraint(equalToConstant: 250),
             linkTextField.heightAnchor.constraint(equalToConstant: 50),
-            linkTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            linkTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
             
             buttonPost.topAnchor.constraint(equalTo: linkTextField.bottomAnchor, constant: 15),
-            buttonPost.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
-            buttonPost.widthAnchor.constraint(equalToConstant: 70),
+            buttonPost.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            buttonPost.widthAnchor.constraint(equalToConstant: 100),
             buttonPost.heightAnchor.constraint(equalToConstant: 50)
         ])
         hideKeyboardWhenTappedAround()

@@ -13,7 +13,6 @@
 		F43C25872782E88100F7EAF9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43C25862782E88100F7EAF9 /* ProfileViewController.swift */; };
 		F43C25892782E8BC00F7EAF9 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43C25882782E8BC00F7EAF9 /* GroupViewController.swift */; };
 		F43C258B2782E8D700F7EAF9 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43C258A2782E8D700F7EAF9 /* PostViewController.swift */; };
-		F43C258E2782EE3400F7EAF9 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43C258D2782EE3400F7EAF9 /* TabBarVC.swift */; };
 		F43C25902782EF3100F7EAF9 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43C258F2782EF3100F7EAF9 /* TabBarViewController.swift */; };
 		F43C25922783004500F7EAF9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43C25912783004500F7EAF9 /* LoginViewController.swift */; };
 		F43C25942784167400F7EAF9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43C25932784167400F7EAF9 /* SignUpViewController.swift */; };
@@ -22,11 +21,16 @@
 		F43C259A27857A1000F7EAF9 /* UserStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43C259927857A1000F7EAF9 /* UserStruct.swift */; };
 		F43C259C27857B1800F7EAF9 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43C259B27857B1800F7EAF9 /* PostTableViewCell.swift */; };
 		F45732D12786C3FD002E6B80 /* profile.json in Resources */ = {isa = PBXBuildFile; fileRef = F45732D02786C3FD002E6B80 /* profile.json */; };
+		F47108482799882F00EE11C1 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47108472799882F00EE11C1 /* SettingViewController.swift */; };
+		F471084A2799C9E900EE11C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47108492799C9E800EE11C1 /* ViewController.swift */; };
 		F48350C82792C15C00D86996 /* JoiningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48350C72792C15C00D86996 /* JoiningViewController.swift */; };
 		F4E2ADDF2796A12D00D73EDD /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2ADDE2796A12D00D73EDD /* HomeTableViewCell.swift */; };
 		F4E2ADE12796A7BE00D73EDD /* HomeStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2ADE02796A7BE00D73EDD /* HomeStruct.swift */; };
-		F4E2ADE32796D34900D73EDD /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2ADE22796D34900D73EDD /* UserProfileViewController.swift */; };
+		F4E2ADE32796D34900D73EDD /* moreContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2ADE22796D34900D73EDD /* moreContentViewController.swift */; };
 		F4E2ADE52797EE5D00D73EDD /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2ADE42797EE5D00D73EDD /* BookmarkViewController.swift */; };
+		F4E2ADE7279943FB00D73EDD /* BookmarkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2ADE6279943FA00D73EDD /* BookmarkTableViewCell.swift */; };
+		F4E2ADE927995F7C00D73EDD /* Offerstruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2ADE827995F7C00D73EDD /* Offerstruct.swift */; };
+		F4E2ADEB2799616A00D73EDD /* OfferTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2ADEA2799616A00D73EDD /* OfferTableViewCell.swift */; };
 		F4E89A712782C8DE00541A8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E89A702782C8DE00541A8B /* AppDelegate.swift */; };
 		F4E89A732782C8DE00541A8B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E89A722782C8DE00541A8B /* SceneDelegate.swift */; };
 		F4E89A752782C8DE00541A8B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E89A742782C8DE00541A8B /* HomeViewController.swift */; };
@@ -45,7 +49,6 @@
 		F43C25862782E88100F7EAF9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F43C25882782E8BC00F7EAF9 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		F43C258A2782E8D700F7EAF9 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
-		F43C258D2782EE3400F7EAF9 /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 		F43C258F2782EF3100F7EAF9 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		F43C25912783004500F7EAF9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F43C25932784167400F7EAF9 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -54,11 +57,16 @@
 		F43C259927857A1000F7EAF9 /* UserStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStruct.swift; sourceTree = "<group>"; };
 		F43C259B27857B1800F7EAF9 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		F45732D02786C3FD002E6B80 /* profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = profile.json; sourceTree = "<group>"; };
+		F47108472799882F00EE11C1 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		F47108492799C9E800EE11C1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F48350C72792C15C00D86996 /* JoiningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoiningViewController.swift; sourceTree = "<group>"; };
 		F4E2ADDE2796A12D00D73EDD /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		F4E2ADE02796A7BE00D73EDD /* HomeStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStruct.swift; sourceTree = "<group>"; };
-		F4E2ADE22796D34900D73EDD /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		F4E2ADE22796D34900D73EDD /* moreContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = moreContentViewController.swift; sourceTree = "<group>"; };
 		F4E2ADE42797EE5D00D73EDD /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
+		F4E2ADE6279943FA00D73EDD /* BookmarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkTableViewCell.swift; sourceTree = "<group>"; };
+		F4E2ADE827995F7C00D73EDD /* Offerstruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offerstruct.swift; sourceTree = "<group>"; };
+		F4E2ADEA2799616A00D73EDD /* OfferTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferTableViewCell.swift; sourceTree = "<group>"; };
 		F4E89A6D2782C8DE00541A8B /* sheet2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sheet2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4E89A702782C8DE00541A8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4E89A722782C8DE00541A8B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +112,7 @@
 			children = (
 				F4E89A7E2782C8F100541A8B /* LaunchScreen.storyboard */,
 				F4E89A7C2782C8F100541A8B /* Assets.xcassets */,
+				F4E2ADE827995F7C00D73EDD /* Offerstruct.swift */,
 				F43C2597278572D000F7EAF9 /* PostStruct.swift */,
 				F43C259927857A1000F7EAF9 /* UserStruct.swift */,
 				F4E2ADE02796A7BE00D73EDD /* HomeStruct.swift */,
@@ -146,8 +155,8 @@
 			isa = PBXGroup;
 			children = (
 				F4E89A742782C8DE00541A8B /* HomeViewController.swift */,
-				F4E2ADDE2796A12D00D73EDD /* HomeTableViewCell.swift */,
-				F4E2ADE22796D34900D73EDD /* UserProfileViewController.swift */,
+				F4E2ADE22796D34900D73EDD /* moreContentViewController.swift */,
+				F47108492799C9E800EE11C1 /* ViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -168,6 +177,7 @@
 				F43C25932784167400F7EAF9 /* SignUpViewController.swift */,
 				F43C2595278469D800F7EAF9 /* ForgetPasswordViewController.swift */,
 				F4E2ADE42797EE5D00D73EDD /* BookmarkViewController.swift */,
+				F47108472799882F00EE11C1 /* SettingViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -185,7 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				F43C258A2782E8D700F7EAF9 /* PostViewController.swift */,
-				F43C259B27857B1800F7EAF9 /* PostTableViewCell.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -193,7 +202,6 @@
 		F43C258C2782EE0700F7EAF9 /* Tab bar */ = {
 			isa = PBXGroup;
 			children = (
-				F43C258D2782EE3400F7EAF9 /* TabBarVC.swift */,
 				F43C258F2782EF3100F7EAF9 /* TabBarViewController.swift */,
 			);
 			path = "Tab bar";
@@ -205,6 +213,17 @@
 				F45732D02786C3FD002E6B80 /* profile.json */,
 			);
 			path = "JSON Files";
+			sourceTree = "<group>";
+		};
+		F471084C2799DB1700EE11C1 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F43C259B27857B1800F7EAF9 /* PostTableViewCell.swift */,
+				F4E2ADE6279943FA00D73EDD /* BookmarkTableViewCell.swift */,
+				F4E2ADEA2799616A00D73EDD /* OfferTableViewCell.swift */,
+				F4E2ADDE2796A12D00D73EDD /* HomeTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		F4E89A642782C8DE00541A8B = {
@@ -228,6 +247,7 @@
 		F4E89A6F2782C8DE00541A8B /* sheet2 */ = {
 			isa = PBXGroup;
 			children = (
+				F471084C2799DB1700EE11C1 /* Cells */,
 				F45732D22786CB68002E6B80 /* JSON Files */,
 				F43003FE2782E37200627887 /* GoogleService-Info.plist */,
 				F4E89A812782C8F100541A8B /* Info.plist */,
@@ -356,21 +376,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4E2ADEB2799616A00D73EDD /* OfferTableViewCell.swift in Sources */,
 				F43C258B2782E8D700F7EAF9 /* PostViewController.swift in Sources */,
-				F4E2ADE32796D34900D73EDD /* UserProfileViewController.swift in Sources */,
+				F4E2ADE32796D34900D73EDD /* moreContentViewController.swift in Sources */,
 				F43C25872782E88100F7EAF9 /* ProfileViewController.swift in Sources */,
 				F43C25852782E84D00F7EAF9 /* OfferViewController.swift in Sources */,
 				F4E89A752782C8DE00541A8B /* HomeViewController.swift in Sources */,
 				F48350C82792C15C00D86996 /* JoiningViewController.swift in Sources */,
-				F43C258E2782EE3400F7EAF9 /* TabBarVC.swift in Sources */,
+				F471084A2799C9E900EE11C1 /* ViewController.swift in Sources */,
 				F4E2ADDF2796A12D00D73EDD /* HomeTableViewCell.swift in Sources */,
 				F4E89A712782C8DE00541A8B /* AppDelegate.swift in Sources */,
+				F47108482799882F00EE11C1 /* SettingViewController.swift in Sources */,
+				F4E2ADE927995F7C00D73EDD /* Offerstruct.swift in Sources */,
 				F4E2ADE12796A7BE00D73EDD /* HomeStruct.swift in Sources */,
 				F4E2ADE52797EE5D00D73EDD /* BookmarkViewController.swift in Sources */,
 				F43C25942784167400F7EAF9 /* SignUpViewController.swift in Sources */,
 				F43C2596278469D800F7EAF9 /* ForgetPasswordViewController.swift in Sources */,
 				F4E89A7B2782C8DE00541A8B /* sheet2.xcdatamodeld in Sources */,
 				F43C259A27857A1000F7EAF9 /* UserStruct.swift in Sources */,
+				F4E2ADE7279943FB00D73EDD /* BookmarkTableViewCell.swift in Sources */,
 				F4E89A732782C8DE00541A8B /* SceneDelegate.swift in Sources */,
 				F43C259C27857B1800F7EAF9 /* PostTableViewCell.swift in Sources */,
 				F43C2598278572D000F7EAF9 /* PostStruct.swift in Sources */,
@@ -528,7 +552,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = sheet2/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "الحمل";
+				INFOPLIST_KEY_CFBundleDisplayName = "مجتمعك";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -557,7 +581,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = sheet2/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "الحمل";
+				INFOPLIST_KEY_CFBundleDisplayName = "مجتمعك";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

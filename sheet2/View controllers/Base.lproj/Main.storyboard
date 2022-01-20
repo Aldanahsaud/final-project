@@ -127,7 +127,9 @@
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.95509856940000004" green="0.010913050089999999" blue="0.79608458280000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="selectedImageTintColor" red="1" green="0.73222548463239878" blue="0.83821730759994728" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <tabBarAppearance key="standardAppearance"/>
+                        <tabBarAppearance key="standardAppearance">
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </tabBarAppearance>
                     </tabBar>
                     <connections>
                         <outlet property="tabbarie" destination="BbX-GR-L9u" id="KNQ-HB-bAW"/>
@@ -152,7 +154,9 @@
                         <viewLayoutGuide key="safeArea" id="wfI-H6-Sqf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="offers" selectedImage="offers" id="A1V-4F-Nio"/>
+                    <tabBarItem key="tabBarItem" title="" image="offers" selectedImage="offers" id="A1V-4F-Nio">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="4" vertical="-1"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="vxR-eT-VqV"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XqB-x9-4hD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

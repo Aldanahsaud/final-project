@@ -15,7 +15,6 @@ class GroupViewController: UIViewController {
     
     let labelYoga : UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-//        $0.text = "hiiia"
         
         
        return $0
@@ -23,29 +22,46 @@ class GroupViewController: UIViewController {
     
     let buttonYoga : UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.backgroundColor = .black
-        $0.setTitle("Join", for: .normal)
+        $0.backgroundColor = UIColor(#colorLiteral(red: 0.5137255192, green: 0.5137255192, blue: 0.5137255192, alpha: 1))
+        $0.setTitle("شارك", for: .normal)
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 15.0
+        $0.layer.borderWidth = 2.0
         $0.addTarget(self, action: #selector(makeSure), for: .touchUpInside)
         
         return $0
     }(UIButton())
+    
+    let labelTitle : UILabel = {
+        $0.font = UIFont(name: "Arial", size: 50)
+        $0.text = "✩مجموعات الصحبه✩"
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        
+        return $0
+    }(UILabel())
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(labelYoga)
         view.addSubview(buttonYoga)
+        view.addSubview(labelTitle)
+        view.backgroundColor = UIColor(named: "Color")
         
         NSLayoutConstraint.activate([
+            
+            labelTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 70),
+            labelTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
             labelYoga.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
             labelYoga.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 80),
             
             buttonYoga.leftAnchor.constraint(equalTo: labelYoga.rightAnchor, constant: 160),
             buttonYoga.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
+            buttonYoga.widthAnchor.constraint(equalToConstant: 100)
             
         ])
         getGroups()
     }
     func getGroups() {
-//        if let userID = userID {
             db.collection("Groups")
                 .getDocuments {
                         qurySnapShot, error in
@@ -61,7 +77,6 @@ class GroupViewController: UIViewController {
                             }
                         }
                 }
-//    }
 }
     @objc func makeSure() {
         let nextVC = JoiningViewController()
