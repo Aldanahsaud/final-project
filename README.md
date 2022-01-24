@@ -1,5 +1,5 @@
 # Tuwaiq 1000 final project
-# _____________________________________________________________
+# __________________________________________
 ## Introduction 
 My application is an arabic community for arab women specific to **pregnant women**, so they can share tips, advices with each other and join groups that have picnics, yoga classes, etc.
 There is offers from our business partners so our users can also take advantage from! ٩(＾◡＾)۶
