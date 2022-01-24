@@ -25,7 +25,7 @@ In all arab communities there is a lack on online communties, in many concept fo
 ## Tools
 - [MakeAppIcon](https://makeappicon.com/) , transform app logo into app icon file
 - [StackEdit](https://stackedit.io/app#/) , to edit README.md
-- [Wix Logo Maker] (https://www.wix.com/logo/maker/)
+- [Wix Logo Maker](https://www.wix.com/logo/maker/)
 
 ## Third parties library 
 - [Firebase](https://firebase.google.com)
