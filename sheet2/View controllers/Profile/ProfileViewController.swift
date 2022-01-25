@@ -13,6 +13,7 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var viewStoryboard: UIView!
     
+    
     // Not Logged in View
     var userID = Auth.auth().currentUser?.uid
     
@@ -62,6 +63,8 @@ class ProfileViewController: UIViewController {
     
     
     var postArray : [Posts] = []
+    
+    
     
     let userIcon : UIImageView = {
         let imageView = UIImageView()
@@ -162,6 +165,23 @@ class ProfileViewController: UIViewController {
         if Auth.auth().currentUser?.email! != nil {
             self.loudData()
         }
+//        
+//        var rowsCount: Int {
+//            let sections = myTableView.numberOfSections
+//            var rows = 0
+//
+//            for i in 0...sections - 1 {
+//                rows += myTableView.numberOfRows(inSection: i)
+//            }
+//            
+//
+//            return rows
+//        }
+//        print(rowsCount)
+//        let postVC = PostViewController()
+//        postVC.objectPost = rowsCount
+       
+        
     }
     @objc func myBookmark(){
         let goVC = BookmarkViewController()
@@ -422,7 +442,7 @@ class ProfileViewController: UIViewController {
                 myTableView.topAnchor.constraint(equalTo: line.bottomAnchor, constant: 10 ),
                 myTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor , constant: 20 ),
                 myTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor , constant: -20 ),
-                myTableView.heightAnchor.constraint(equalToConstant: 350),
+                myTableView.heightAnchor.constraint(equalToConstant: 390),
                 
             ])
         }
@@ -453,6 +473,7 @@ class ProfileViewController: UIViewController {
 //            cell.usernamePoster.text = postArray[indexPath.row].username
             cell.contentPost.text = postArray[indexPath.row].content
             cell.linkPost.text = postArray[indexPath.row].link
+            
             return cell
         }
         
@@ -466,20 +487,37 @@ class ProfileViewController: UIViewController {
                         if let err = err {
                             print("Error removing document: \(err)")
                         } else {
-                            let alert = UIAlertController(title: "", message: "تم حذف الماده  )", preferredStyle: .alert)
+                            let alert = UIAlertController(title: "", message: "تم حذف المشاركة بنجاح", preferredStyle: .alert)
                             let action = UIAlertAction(title: "موافق", style: .default ,handler: { action in
                                 self.myTableView.reloadData()
                             })
                             alert.addAction(action)
                             self.present(alert, animated: true)
                             print("Document successfully removed!")
+                            self.removePostUser()
                         }
                     }
                 }
         
     }
         func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 140
+            return 190
+        }
+        func removePostUser(){
+            if let userID = userID {
+                db.collection("Users").document(userID).getDocument { querySnapShot, error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else {
+                        var x: Int = querySnapShot?.get("posts") as! Int
+                        self.db.collection("Users").document(userID).updateData([
+                            "posts": x - 1
+                        ])
+                        
+                    }
+                }
+            }
+
         }
     
     }
@@ -508,7 +546,6 @@ extension UITableView {
             self.separatorStyle = .singleLine
         }
     }
-    
     
     
     

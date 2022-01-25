@@ -28,7 +28,7 @@ class JoiningViewController: UIViewController {
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 15.0
         $0.layer.borderWidth = 2.0
-        $0.setTitle("I am Sure of Joining This Group", for: .normal)
+        $0.setTitle("انا متاكدة لدخول المجموعة", for: .normal)
         $0.addTarget(self, action: #selector(joinNow), for: .touchUpInside)
         
         return $0
@@ -40,13 +40,13 @@ class JoiningViewController: UIViewController {
         view.addSubview(buttonJoin)
         
         NSLayoutConstraint.activate([
-            //            labelContent.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
-            labelContent.leftAnchor.constraint(equalTo: view.leftAnchor),
-            labelContent.heightAnchor.constraint(equalToConstant: 300),
-            labelContent.widthAnchor.constraint(equalToConstant: 400),
+                        labelContent.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            labelContent.leftAnchor.constraint(equalTo: view.leftAnchor, constant:  10),
+            labelContent.heightAnchor.constraint(equalToConstant: 250),
+            labelContent.widthAnchor.constraint(equalToConstant: 360),
             
             
-            buttonJoin.topAnchor.constraint(equalTo: view.topAnchor, constant: 500),
+                        buttonJoin.topAnchor.constraint(equalTo: labelContent.bottomAnchor, constant: 50),
             buttonJoin.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
             buttonJoin.widthAnchor.constraint(equalToConstant: 300)
             
@@ -73,14 +73,35 @@ class JoiningViewController: UIViewController {
     }
     @objc func joinNow(){
         click()
+        updateYoga()
         dismiss(animated: true)
     }
     
     func click(){
         var email  = Auth.auth().currentUser!.email!
-                                self.db.collection("Groups").document("Yoga-0").updateData([
-                                    "emailarray" : FieldValue.arrayUnion([email])
-                                ])
-            
-}
+        self.db.collection("Groups").document("Yoga-0").updateData([
+            "emailarray" : FieldValue.arrayUnion([email])
+        ])
+        
+    }
+    func updateYoga(){
+        if let userID = userID {
+            self.db.collection("Groups").getDocuments { querySnapShot, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    for doc in querySnapShot!.documents {
+                        let data = doc.data()
+                        var name = data["name"] as! String
+                        if name == "Yoga" {
+                            self.db.collection("Users").document(userID).updateData([
+                                "groups" : FieldValue.arrayUnion([name])
+                            ])
+
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

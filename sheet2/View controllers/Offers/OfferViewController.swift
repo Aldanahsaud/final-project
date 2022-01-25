@@ -66,7 +66,7 @@ class OfferViewController: UIViewController {
                 
                         for doc in qurySnapShot!.documents {
                             let data = doc.data()
-                                self.offerArray.append(Offer(name: data["name"] as? String ?? "", content:  data["content"] as? String ?? "", endOffer:  data["endOffer"] as? String ?? ""))}
+                            self.offerArray.append(Offer(name: data["name"] as? String ?? "", content: UIImage(named: data["content"] as! String)! , endOffer:  (data["endOffer"] as? String ?? "") + "  " +  "تاريخ انتهاء العرض"))}
                                 self.myTableView.reloadData()
 
                             }
@@ -86,7 +86,7 @@ class OfferViewController: UIViewController {
             
             
             cell.nameLabel.text = offerArray[indexPath.row].name
-            cell.contentText.text = offerArray[indexPath.row].content
+            cell.contentText.image = offerArray[indexPath.row].content
             cell.endOfferLabel.text = offerArray[indexPath.row].endOffer
             
             return cell

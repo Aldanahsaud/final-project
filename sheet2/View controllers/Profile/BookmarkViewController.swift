@@ -58,8 +58,8 @@ class BookmarkViewController: UIViewController {
 
             label.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
             label.heightAnchor.constraint(equalToConstant: 200),
-            label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 5),
-            label.widthAnchor.constraint(equalToConstant: 400),
+            label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -5),
+            label.widthAnchor.constraint(equalToConstant: 370),
             
             line.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 5),
             line.widthAnchor.constraint(equalToConstant: 390),
@@ -68,30 +68,41 @@ class BookmarkViewController: UIViewController {
             
             label2.topAnchor.constraint(equalTo: line.bottomAnchor, constant: 5),
             label2.heightAnchor.constraint(equalToConstant: 200),
-            label2.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 5),
-            label2.widthAnchor.constraint(equalToConstant: 400),
+            label2.rightAnchor.constraint(equalTo: view.rightAnchor),
+            label2.widthAnchor.constraint(equalToConstant: 370),
         ])
         loadArray()
     }
     
     func loadArray(){
-        db.collection("Users")
-                       .getDocuments() { (querySnapshot, err) in
-                           if let err = err {
-                               print("Error getting documents: \(err)")
-                           } else {
-                               for document in querySnapshot!.documents {
-                                   let data = document.data()
-                                   let x = data["bookmark"] as! [String]
-                                   self.label.text = x[0]
-//                                   self.label2.text = x[1]
-                                   
-                                   
-                               }
-                           }
-                       }
-       }
-
-
-
+        if let userID = userID {
+            db.collection("Users").document(userID).getDocument(completion: { querySnapshot, error in
+                if let err = error {
+                    print("Error getting documents: \(err)")
+                } else {
+                    let data = querySnapshot?.get("bookmark") as! [String]
+                    self.label.text = data[0]
+                    self.label2.text = data[1] 
+                }
+            })
+//                .getDocuments() { (querySnapshot, err) in
+//                    if let err = err {
+//                        print("Error getting documents: \(err)")
+//                    } else {
+//                        for document in querySnapshot!.documents {
+//                            let data = document.data()
+//                            let x = data["bookmark"] as! [String]
+//                            self.label.text = x[0]
+//                            self.label2.text = x[1]
+//
+//
+//                        }
+//                    }
+//                }
+            
+        }
+    }
+    
+    
+    
 }

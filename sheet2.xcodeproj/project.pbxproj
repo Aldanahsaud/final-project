@@ -24,6 +24,8 @@
 		F47108482799882F00EE11C1 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47108472799882F00EE11C1 /* SettingViewController.swift */; };
 		F471084A2799C9E900EE11C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47108492799C9E800EE11C1 /* ViewController.swift */; };
 		F48350C82792C15C00D86996 /* JoiningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48350C72792C15C00D86996 /* JoiningViewController.swift */; };
+		F4D3C933279EDD820097874E /* BookOfTheMonthCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3C932279EDD820097874E /* BookOfTheMonthCollectionViewCell.swift */; };
+		F4D3C935279EE1260097874E /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3C934279EE1260097874E /* Collection.swift */; };
 		F4E2ADDF2796A12D00D73EDD /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2ADDE2796A12D00D73EDD /* HomeTableViewCell.swift */; };
 		F4E2ADE12796A7BE00D73EDD /* HomeStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2ADE02796A7BE00D73EDD /* HomeStruct.swift */; };
 		F4E2ADE32796D34900D73EDD /* moreContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2ADE22796D34900D73EDD /* moreContentViewController.swift */; };
@@ -60,6 +62,8 @@
 		F47108472799882F00EE11C1 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		F47108492799C9E800EE11C1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F48350C72792C15C00D86996 /* JoiningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoiningViewController.swift; sourceTree = "<group>"; };
+		F4D3C932279EDD820097874E /* BookOfTheMonthCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookOfTheMonthCollectionViewCell.swift; sourceTree = "<group>"; };
+		F4D3C934279EE1260097874E /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		F4E2ADDE2796A12D00D73EDD /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		F4E2ADE02796A7BE00D73EDD /* HomeStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStruct.swift; sourceTree = "<group>"; };
 		F4E2ADE22796D34900D73EDD /* moreContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = moreContentViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +120,7 @@
 				F43C2597278572D000F7EAF9 /* PostStruct.swift */,
 				F43C259927857A1000F7EAF9 /* UserStruct.swift */,
 				F4E2ADE02796A7BE00D73EDD /* HomeStruct.swift */,
+				F4D3C934279EE1260097874E /* Collection.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -222,6 +227,7 @@
 				F4E2ADE6279943FA00D73EDD /* BookmarkTableViewCell.swift */,
 				F4E2ADEA2799616A00D73EDD /* OfferTableViewCell.swift */,
 				F4E2ADDE2796A12D00D73EDD /* HomeTableViewCell.swift */,
+				F4D3C932279EDD820097874E /* BookOfTheMonthCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -247,12 +253,12 @@
 		F4E89A6F2782C8DE00541A8B /* sheet2 */ = {
 			isa = PBXGroup;
 			children = (
-				F471084C2799DB1700EE11C1 /* Cells */,
 				F45732D22786CB68002E6B80 /* JSON Files */,
 				F43003FE2782E37200627887 /* GoogleService-Info.plist */,
 				F4E89A812782C8F100541A8B /* Info.plist */,
 				F43004042782E3D900627887 /* Database */,
 				F43004032782E3AD00627887 /* Delegate */,
+				F471084C2799DB1700EE11C1 /* Cells */,
 				F43004022782E39200627887 /* View controllers */,
 				F43004012782E38600627887 /* Models */,
 			);
@@ -394,6 +400,7 @@
 				F43C2596278469D800F7EAF9 /* ForgetPasswordViewController.swift in Sources */,
 				F4E89A7B2782C8DE00541A8B /* sheet2.xcdatamodeld in Sources */,
 				F43C259A27857A1000F7EAF9 /* UserStruct.swift in Sources */,
+				F4D3C935279EE1260097874E /* Collection.swift in Sources */,
 				F4E2ADE7279943FB00D73EDD /* BookmarkTableViewCell.swift in Sources */,
 				F4E89A732782C8DE00541A8B /* SceneDelegate.swift in Sources */,
 				F43C259C27857B1800F7EAF9 /* PostTableViewCell.swift in Sources */,
@@ -401,6 +408,7 @@
 				F43C25902782EF3100F7EAF9 /* TabBarViewController.swift in Sources */,
 				F43C25892782E8BC00F7EAF9 /* GroupViewController.swift in Sources */,
 				F43C25922783004500F7EAF9 /* LoginViewController.swift in Sources */,
+				F4D3C933279EDD820097874E /* BookOfTheMonthCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,6 +558,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 78MN8Q8M4U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = sheet2/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "مجتمعك";
@@ -579,6 +588,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 78MN8Q8M4U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = sheet2/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "مجتمعك";

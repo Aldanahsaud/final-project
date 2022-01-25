@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import UIKit
 
 struct Offer {
     var name: String
-    var content: String
+    var content =  UIImage()
     var endOffer: String
 }

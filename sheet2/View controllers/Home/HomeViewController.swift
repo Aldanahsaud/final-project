@@ -15,6 +15,19 @@ class HomeViewController: UIViewController, UISearchBarDelegate {
     var filtred : [Home] = []
     let refreshControl = UIRefreshControl()
     
+//    let ofTheMonthArray: [Collection] = [Collection(image: UIImage(named: "book1")!), Collection(image: UIImage(named: "book2")!), Collection(image: UIImage(named: "book3")!), Collection(image:  UIImage(named: "book4")!)]
+//
+//    var bookOfMonth : UICollectionView = {
+//            let layout = UICollectionViewFlowLayout()
+//            layout.scrollDirection = .horizontal
+//        layout.collectionView?.alwaysBounceHorizontal = true
+//            let explorCv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+//            explorCv.translatesAutoresizingMaskIntoConstraints = false
+//            explorCv.semanticContentAttribute = .forceRightToLeft
+//
+//            return explorCv
+//        }()
+    
     
     let searchbar : UISearchBar = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -37,36 +50,75 @@ class HomeViewController: UIViewController, UISearchBarDelegate {
         return $0
     }(UILabel())
     
+    
+    let labelDate : UILabel = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.text = "2022"
+        $0.textColor = UIColor(named: "Color-3")
+        return $0
+    }(UILabel())
+    
+    let whiteclear : UILabel = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.text = "......."
+        $0.textColor = UIColor(named: "Color")
+        return $0
+    }(UILabel())
+    
+    
+    let labelbook : UILabel = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.text = " كتوب هذا الشهر : "
+        $0.textColor = UIColor(named: "Color-1")
+        return $0
+    }(UILabel())
+    
+    var screenWidth =  UIScreen.main.bounds.width
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loudData()
+        
+        
         view.backgroundColor = UIColor(named: "Color")
         view.addSubview(myHometableView)
         view.addSubview(searchbar)
         view.addSubview(labelTitle)
+        view.addSubview(labelDate)
+        view.addSubview(whiteclear)
         searchbar.delegate = self
+        
         
         
         myHometableView.delegate = self
         myHometableView.dataSource = self
         myHometableView.register(HomeTableViewCell.self, forCellReuseIdentifier: "homeCell")
         
+        
         NSLayoutConstraint.activate([
             
             
-            
-            myHometableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
-            myHometableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
-            myHometableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
-            myHometableView.heightAnchor.constraint(equalToConstant: 590),
-            
-            searchbar.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+            searchbar.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
             searchbar.widthAnchor.constraint(equalToConstant: 300),
-            searchbar.heightAnchor.constraint(equalToConstant: 70),
+            searchbar.heightAnchor.constraint(equalToConstant: 40),
             searchbar.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            labelTitle.topAnchor.constraint(equalTo: myHometableView.bottomAnchor, constant: 10),
+            
+            myHometableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 90),
+            myHometableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            myHometableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            myHometableView.heightAnchor.constraint(equalToConstant: 670),
+            
+            
+            
+            labelTitle.topAnchor.constraint(equalTo: myHometableView.bottomAnchor, constant: 20),
             labelTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            labelDate.topAnchor.constraint(equalTo: labelTitle.bottomAnchor,  constant: 3),
+            labelDate.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            whiteclear.topAnchor.constraint(equalTo: labelDate.bottomAnchor, constant: 120),
+            whiteclear.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
         
         myHometableView.reloadData()
@@ -159,6 +211,25 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     
 }
+
+//extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource{
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return ofTheMonthArray.count
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "monthCell", for: indexPath) as! BookOfTheMonthCollectionViewCell
+//
+//        cell.images.image = ofTheMonthArray[indexPath.row].image
+//        cell.layer.borderWidth = 0.5
+//                cell.frame.size.width = screenWidth / 3
+//                cell.frame.size.height = screenWidth / 3
+//
+//        return cell
+//    }
+//
+//
+//}
 
 
 
